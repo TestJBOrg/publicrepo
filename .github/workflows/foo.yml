@@ -1,0 +1,15 @@
+name: Foo
+on:
+  pull_request:
+    types: [opened]
+permissions:
+  pull-requests: read
+jobs:
+  foo:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+        - uses: actions/checkout@v4
+        - run: go run main.go
+          env:
+            TEST_SECRET: "${{ secrets.TEST_SECRET }}"
